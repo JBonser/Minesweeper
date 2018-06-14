@@ -4,7 +4,7 @@ This is a Coding Kata that I am using to flex my Test Driven Development(TDD) an
 
 The Kata that I am using is located [here](https://codingdojo.org/kata/Minesweeper/)
 
-##Stages Of Development
+## Stages Of Development
 
 The first stage of this development will be to follow some strict Test Driven Development to complete the Kata.
 
