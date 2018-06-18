@@ -13,17 +13,11 @@ namespace Minesweeper
 
         public bool ImportLevel(string level)
         {
-            List<string> boardList = level.Split(new[] { '\r', '\n' }).ToList();
-            if (boardList.Count == 0)
-                return false;
-
             int rows = 0;
             int columns = 0;
-            if (!ParseInputFields(boardList[0], out rows, out columns))
+            List<string> boardList;
+            if (!ParseInput(level, out rows, out columns, out boardList))
                 return false;
-
-            //Remove the Input Field Row.
-            boardList.RemoveAt(0);
 
             Board board = new Board(rows, columns);
             if (!board.InitialiseBoard(boardList))
@@ -34,7 +28,25 @@ namespace Minesweeper
             return true;
         }
 
-        bool ParseInputFields(string inputFields, out int rows, out int columns)
+        //Take the level data as a string and decompose it into rows, columns and a list of lines for the board.
+        bool ParseInput(string level, out int rows, out int columns, out List<string> boardList)
+        {
+            rows = 0;
+            columns = 0;
+            boardList = level.Split(new[] { '\r', '\n' }).ToList();
+            if (boardList.Count == 0)
+                return false;
+
+            if (!ParseFieldNumbers(boardList[0], out rows, out columns))
+                return false;
+
+            //Remove the Input Field Row Leaving only the Board Squares.
+            boardList.RemoveAt(0);
+            return true;
+        }
+
+        //Takes the input field line of the level and parses it, whilst ensuring it is valid.
+        bool ParseFieldNumbers(string inputFields, out int rows, out int columns)
         {
             rows = 0;
             columns = 0;
