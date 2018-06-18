@@ -12,6 +12,8 @@ namespace Minesweeper
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteFont arialSpriteFont;
+
         public string MineMap { get; set; }
 
         public MinesweeperGame()
@@ -41,6 +43,9 @@ namespace Minesweeper
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            //Load Font 
+            arialSpriteFont = Content.Load<SpriteFont>("Fonts/arialBold32");
 
             // TODO: use this.Content to load your game content here
         }
@@ -78,7 +83,10 @@ namespace Minesweeper
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            //Draw Text to the screen
+            spriteBatch.Begin();
+            spriteBatch.DrawString(arialSpriteFont, "Minesweeper", new Vector2(0, 0), Color.Black);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
 

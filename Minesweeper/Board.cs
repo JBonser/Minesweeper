@@ -113,7 +113,7 @@ namespace Minesweeper
             }
         }
 
-        bool IndexInBounds(int rowIndex, int columnIndex)
+        public bool IndexInBounds(int rowIndex, int columnIndex)
         {
             if (rowIndex >= 0 &&
                 columnIndex >= 0 &&
